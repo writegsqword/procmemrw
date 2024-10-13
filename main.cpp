@@ -12,7 +12,7 @@ using uint64 = unsigned int64_t;
 
 int main(int argc, char** argv) {
   std::string mode = argv[1];
-  uint64 addr = std::stoul(argv[3], nullptr, 16);
+  uint64 addr = std::stoull(argv[3], nullptr, 16);
   uint64 size = 0x1000;
   
   if(argc == 4) { 
