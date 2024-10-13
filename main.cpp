@@ -15,7 +15,7 @@ int main(int argc, char** argv) {
   uint64 addr = std::stoull(argv[3], nullptr, 16);
   uint64 size = 0x1000;
   
-  if(argc == 5) { 
+  if(argc >= 5) { 
     size = std::stoull(argv[4], nullptr, 10);
   }
   char cmd[0x200];
