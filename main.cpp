@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
     int fd = open(fname.c_str(), O_RDONLY);
     lseek64(fd, addr, SEEK_SET);
     read(fd, buf, size);
-    write(STDIN_FILENO, buf, size); 
+    write(STDOUT_FILENO, buf, size); 
     return 0;
   }
 
