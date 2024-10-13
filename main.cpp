@@ -19,7 +19,7 @@ int main(int argc, char** argv) {
     size = std::stoull(argv[4], nullptr, 10);
   }
   char cmd[0x200];
-  std::string fname = std::string("/proc/") + argv[2] + "/mem";
+  std::string fname = std::string("/proc/") + std::string(argv[2]) + std::string("/mem");
   
   char* buf = new char[size];
   if(mode == "write") { 
