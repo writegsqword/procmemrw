@@ -19,11 +19,11 @@ int main(int argc, char** argv) {
     size = std::stoull(argv[4], nullptr, 10);
   }
   char cmd[0x200];
-  const char* fname = (std::string("/proc/") + argv[2] + "/mem").c_str();
+  std::string fname = std::string("/proc/") + argv[2] + "/mem";
   
   char* buf = new char[size];
   if(mode == "write") { 
-    int fd = open(fname, O_WRONLY);
+    int fd = open(fname.c_str(), O_WRONLY);
     lseek64(fd, addr, SEEK_SET);
     read(STDIN_FILENO, buf, size);
     write(fd, buf, size);
