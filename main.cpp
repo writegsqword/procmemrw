@@ -36,10 +36,11 @@ int main(int argc, char **argv)
 {
 
     uint64 addr, size = 0, pid;
-    std::string filename = "";
+    std::string filename = "", fpname;
     bool mode_read, mode_write;
+    
 
-    argparse::ArgumentParser args("Process Memory Dumper");
+    argparse::ArgumentParser args("Block device/Proc memory read/writer");
     auto &opmode = args.add_mutually_exclusive_group(true);
     args.add_argument("-a", "--address")
         .help("The address to read/write memory to(hex)")
@@ -68,11 +69,10 @@ int main(int argc, char **argv)
         .default_value("")
         .store_into(filename);
 
-    args.add_argument("-p", "--pid")
-        .help("PID of process to read/write memory from")
+    args.add_argument("fdpath")
+        .help("File of block device/memory")
         .required()
-        .scan<'u', uint64>()
-        .store_into(pid);
+        .store_into(fpname);
 
     try
     {
@@ -94,7 +94,7 @@ int main(int argc, char **argv)
         default_size = true;
     }
 
-    std::string proc_fname = "/proc/" + std::to_string(pid) + "/mem";
+    std::string proc_fname = fpname;
     int memory_fd;
     if (mode_read)
     {
